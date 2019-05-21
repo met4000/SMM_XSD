@@ -7,6 +7,6 @@ XSD Support for `<mod:... />` SMM tags - `<mod-append:... />` and `<mod-overwrit
 .xml.append template:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<FTL xmlns="SMM" xmlns:mod="SMM/mod" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="SMM http://raw.githubusercontent.com/met4000/SMM_XSD/master/SMM.xsd">
+<FTL xmlns="SMM" xmlns:mod="SMM/mod" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="SMM https://raw.githubusercontent.com/met4000/SMM_XSD/master/SMM.xsd">
 </FTL>
 ```
