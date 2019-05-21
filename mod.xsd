@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns="http://raw.githubusercontent.com/met4000/SMM_XSD/master/mod" xmlns:type="http://raw.githubusercontent.com/met4000/SMM_XSD/master/types" targetNamespace="http://raw.githubusercontent.com/met4000/SMM_XSD/master/mod" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-  <xs:import schemaLocation="types.xsd" namespace="http://raw.githubusercontent.com/met4000/SMM_XSD/master/types"/>
+<xs:schema xmlns="SMM/mod" xmlns:type="SMM/types" targetNamespace="SMM/mod" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:import schemaLocation="types.xsd" namespace="SMM/types"/>
   
   <xs:attributeGroup name="findAttr">
     <xs:attribute name="reverse" type="xs:boolean" default="false"/>
