@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="SMM/mod" xmlns:type="SMM/types" targetNamespace="SMM/mod" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:import schemaLocation="types.xsd" namespace="SMM/types"/>
+  
+  <xs:attributeGroup name="findAttr">
+    <xs:attribute name="reverse" type="xs:boolean" default="false"/>
+    <xs:attribute name="start" type="xs:nonNegativeInteger" default="0"/>
+    <xs:attribute name="limit" type="xs:integer" default="-1"/>
+    <xs:attribute name="panic" type="xs:boolean" default="false"/>
+  </xs:attributeGroup>
+  
+
+  <xs:group name="findGroup">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="findName">
+          <xs:complexType>
+            <xs:group ref="findIntGroup"/>
+
+            <!-- Note that findName actually has different default attrib values to findAttr -->
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="findAttr"/>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="findLike">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="selector" type="type:textAndAttributes"/>
+              <xs:group ref="findIntGroup"/>
+            </xs:sequence>
+
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="findAttr"/>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="findWithChildLike">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="selector" type="type:textAndAttributes"/>
+              <xs:group ref="findIntGroup"/>
+            </xs:sequence>
+
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="findAttr"/>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="findComposite">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="par">
+                <xs:complexType>
+                  <xs:group ref="findGroup"/>
+
+                  <xs:attribute name="op">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:pattern value="AND|OR"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:group ref="findIntGroup"/>
+            </xs:sequence>
+
+            <xs:attributeGroup ref="findAttr"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:group name="findCmdGroup">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="setValue" type="type:textOnly"/>
+        <xs:element name="setAttributes" type="type:attributesOnly"/>
+        <xs:element name="removeAttributes" type="type:attributesOnly"/>
+        <xs:element name="removeTag" type="xs:string" fixed=""/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:group name="findIntGroup">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="findGroup"/>
+        <xs:group ref="findCmdGroup"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+</xs:schema>

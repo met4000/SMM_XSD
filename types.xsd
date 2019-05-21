@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="SMM/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:complexType name="textOnly">
+    <xs:simpleContent>
+      <xs:extension base="xs:string"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="attributesOnly">
+    <xs:anyAttribute processContents="lax"/>
+  </xs:complexType>
+  
+  <xs:complexType name="textAndAttributes">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:anyAttribute processContents="lax"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

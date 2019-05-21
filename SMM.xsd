@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mod="SMM/mod" xsi:schemaLocation="SMM/mod file:///E:/Tools/FTL/SlipstreamModManager_1.9.1-Win/mods/XML%20Schema/mod.xsd" targetNamespace="SMM" elementFormDefault="qualified">
+  <xs:import namespace="SMM/mod" schemaLocation="file:///E:/Tools/FTL/SlipstreamModManager_1.9.1-Win/mods/XML%20Schema/mod.xsd"/>
+  
+  <xs:element name="FTL">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="mod:findGroup"/>
+        <xs:any processContents="lax"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
